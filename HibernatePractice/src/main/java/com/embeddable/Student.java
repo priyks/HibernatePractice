@@ -9,7 +9,7 @@ public class Student {
 	private int id;
 	private String name;
 	private String city;
-	private Certificate certificate;
+	private Certificate certificate; // Embedded certificate in student table
 	/**
 	 * @return the city
 	 */

@@ -15,7 +15,7 @@ public class App
         System.out.println( "Hello World!" );
        /* SessionFactory factory=new Configuration().configure().buildSessionFactory();*/ 
         Configuration cfg=new Configuration();
-        cfg.configure();
+        cfg.configure(); // here we can provide cfg.xml file if its different folder location then class path
         SessionFactory factory=cfg.buildSessionFactory();
         System.out.println(factory);
         System.out.println(factory.isClosed());

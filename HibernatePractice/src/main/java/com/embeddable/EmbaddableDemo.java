@@ -42,6 +42,8 @@ public class EmbaddableDemo {
 	    
 	    session.save(s1);
 	    session.save(s2);
+	  /*  session.save(c1);
+	    session.save(c2);*/
 	    
 	    t.commit();
 	    
