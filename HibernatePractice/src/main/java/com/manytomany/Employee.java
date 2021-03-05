@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -16,6 +18,8 @@ public class Employee {
 	private String name;
 	
 	@ManyToMany
+	@JoinTable(name="emp_pro", joinColumns= {@JoinColumn(name="eid")},
+	inverseJoinColumns={@JoinColumn(name="pid")})
 	private List<Project> projectList;
 
 	public Employee() {
