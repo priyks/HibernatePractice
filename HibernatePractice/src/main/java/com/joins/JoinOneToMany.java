@@ -84,6 +84,8 @@ public class JoinOneToMany {
 	    	System.out.println(b.getId());
 	    }
 	    
+	    
+	    
 	   
 		session.close();
 		
