@@ -8,13 +8,16 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cache.ehcache.internal.EhcacheRegionFactory;
 import org.hibernate.cfg.Configuration;
+
+
 
 public class JoinOneToMany {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+	
 		Configuration cfg=new Configuration();
 		SessionFactory factory=cfg.configure("com/joins/hibernate.cfg.xml").buildSessionFactory();
 		
@@ -66,7 +69,7 @@ public class JoinOneToMany {
 		session.save(b2);
 		session.save(b3);*/
 	
-	    Author authordetails=(Author)session.get(Author.class,111); // lazy loading 
+	   // Author authordetails=(Author)session.get(Author.class,111); // lazy loading 
 	   /* System.out.println("book Author :"+authordetails.getFullName());
 	    System.out.println("City :"+authordetails.getCity());
 	    System.out.println(authordetails.getBooks().size()); // lazy loading 
@@ -86,7 +89,7 @@ public class JoinOneToMany {
 	  */
 	
 	    // cascading in hibernate 
-	    Author author1=new Author();
+	  /*  Author author1=new Author();
 		author1.setId(555);
 		author1.setFullName("Shivaji Swant");
 		author1.setCity("beed");
@@ -111,11 +114,23 @@ public class JoinOneToMany {
 	    
 	    author1.setBooks(booksList);
 	   
-	    session.save(author1); // will save books also 
-		tx.commit();
+	    session.save(author1);*/ // will save books also 
 	    
-	   
+	    Author bk=(Author)session.get(Author.class, 111);
+	    System.out.println(bk);
+	    
+		//tx.commit();
+	    
 		session.close();
+		
+		Session session1=factory.openSession();
+		
+		Author bk1=(Author)session1.get(Author.class, 111);
+		System.out.println("hi");
+	    System.out.println(bk1);
+		
+		session1.close();
+		
 		
 	}
 

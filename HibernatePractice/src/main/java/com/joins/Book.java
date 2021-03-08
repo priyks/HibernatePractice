@@ -116,11 +116,11 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-
+/*
 	@Override
 	public String toString() {
 		return "Book [Id=" + Id + ", title=" + title + ", price=" + price + ", publicating_date=" + publicating_date
 				+ ", author=" + author + "]";
-	}
+	}*/
 	
 }
