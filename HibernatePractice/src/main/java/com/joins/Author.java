@@ -2,6 +2,7 @@ package com.joins;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Author {
 	@Column(nullable=true)
 	private String city;
 	
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="author",cascade=CascadeType.ALL) // it will persist,delete and update all related objects 
 	@Column(name="book_id")
 	private List<Book> books;
 

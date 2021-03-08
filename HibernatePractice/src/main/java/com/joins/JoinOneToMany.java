@@ -65,7 +65,7 @@ public class JoinOneToMany {
 		session.save(b1);
 		session.save(b2);
 		session.save(b3);*/
-		tx.commit();
+	
 	    Author authordetails=(Author)session.get(Author.class,111); // lazy loading 
 	   /* System.out.println("book Author :"+authordetails.getFullName());
 	    System.out.println("City :"+authordetails.getCity());
@@ -76,15 +76,43 @@ public class JoinOneToMany {
 	    }*/
 	    
 	    // HQL
-	    String query="from Author as a where a.fullName=:x";
+	   /* String query="from Author as a where a.fullName=:x";
 	    Query q=session.createQuery(query);
 	    q.setParameter("x", "Paulo Coelho");
 	    List<Author> books=q.list();
 	    for(Author b: books) {
 	    	System.out.println(b.getId());
 	    }
+	  */
+	
+	    // cascading in hibernate 
+	    Author author1=new Author();
+		author1.setId(555);
+		author1.setFullName("Shivaji Swant");
+		author1.setCity("beed");
+		
+		Book b4=new Book(); 
+		b4.setId(50);
+		b4.setTitle("Chhawa");
+		b4.setPrice(550);
+		b4.setPublication_date(new Date());
+		b4.setAuthor(author1);
+		
+		Book b5=new Book(); 
+		b5.setId(60);
+		b5.setTitle("Radhey");
+		b5.setPrice(850);
+		b5.setPublication_date(new Date());
+		b5.setAuthor(author1);
+		
+	    List<Book> booksList=new ArrayList<Book>();
+	    booksList.add(b4);
+	    booksList.add(b5);
 	    
-	    
+	    author1.setBooks(booksList);
+	   
+	    session.save(author1); // will save books also 
+		tx.commit();
 	    
 	   
 		session.close();
