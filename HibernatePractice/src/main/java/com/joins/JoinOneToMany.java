@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,14 +19,14 @@ public class JoinOneToMany {
 		SessionFactory factory=cfg.configure("com/joins/hibernate.cfg.xml").buildSessionFactory();
 		
 		// one author have many books
-	/*	
+	/*
 		Author author=new Author();
 		author.setId(111);
 		author.setFullName("Paulo Coelho");
 		author.setCity("beijing");
 		
 		// book 1
-		Book b1=new Book();
+		Book b1=new Book(); 
 		b1.setId(1);
 		b1.setTitle("The Alchemist");
 		b1.setPrice(350);
@@ -54,29 +55,38 @@ public class JoinOneToMany {
 		booksList.add(b2);
 		booksList.add(b3);
 		
-		author.setBooks(booksList);
-		*/
+		author.setBooks(booksList);*/
+	
 		
 		Session session=factory.openSession();
 		Transaction tx=session.beginTransaction();
-		
-	/*	session.save(author);
+	/*	
+	session.save(author);
 		session.save(b1);
 		session.save(b2);
-		session.save(b3);
-		tx.commit();*/
-	    Author authordetails=session.get(Author.class,111);
-	    System.out.println("book Author :"+authordetails.getFullName());
+		session.save(b3);*/
+		tx.commit();
+	    Author authordetails=(Author)session.get(Author.class,111); // lazy loading 
+	   /* System.out.println("book Author :"+authordetails.getFullName());
+	    System.out.println("City :"+authordetails.getCity());
+	    System.out.println(authordetails.getBooks().size()); // lazy loading 
 	    System.out.println("Book list : ");
 	    for(Book b:authordetails.getBooks()) {
 	    	System.out.println(b.getTitle()+" :  book price :"+b.getPrice());
+	    }*/
+	    
+	    // HQL
+	    String query="from Author as a where a.fullName=:x";
+	    Query q=session.createQuery(query);
+	    q.setParameter("x", "Paulo Coelho");
+	    List<Author> books=q.list();
+	    for(Author b: books) {
+	    	System.out.println(b.getId());
 	    }
+	    
 	   
 		session.close();
 		
-	
-		
-
 	}
 
 }
