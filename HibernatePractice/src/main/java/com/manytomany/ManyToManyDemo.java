@@ -3,6 +3,7 @@ package com.manytomany;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -67,13 +68,33 @@ public class ManyToManyDemo {
 		
 		Session session=factory.openSession();
 		Transaction tx=session.beginTransaction();
-		session.save(e1);
+	/*	session.save(e1);
 		session.save(e2);
 		session.save(p3);
 		session.save(e3);
 		session.save(p1);
 		session.save(p2);
-		session.save(p4);
+		session.save(p4);*/
+		 
+		// hql delete
+		
+	/*	String s="delete from Employee where eid=:x ";
+		Query q=session.createQuery(s);
+		
+		q.setParameter("x", 300);
+		
+		int r=q.executeUpdate();
+		System.out.println("no of rows deleted "+r);
+		*/
+		// hql update 
+	/*	
+		String s1="update Employee  set name=:x where eid=:c";
+		Query q1=session.createQuery(s1);
+		q1.setParameter("x", "Omkar Kulkarni");
+		q1.setParameter("c", 100);
+		int r1=q1.executeUpdate();
+		System.out.println("no of rows updated : "+r1);
+		*/
 		
 		tx.commit();
 		session.close();
