@@ -13,7 +13,9 @@
 		<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 		<property name="hbm2ddl.auto">create</property>
 		<property name="show_sql">true</property>
+		<property name="show_format">true</property>
 	    <mapping class="com.embeddable.Student"/>
+	    <mapping class="com.embeddable.Certificate"/>
 	 
 		
 	</session-factory>
