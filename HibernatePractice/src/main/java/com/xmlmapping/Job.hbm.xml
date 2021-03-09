@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    
+     <class name="com.xmlmapping.Job" table="job">
+    <id name="id" >
+    <column name="job_id"></column>
+    <generator class="native"></generator>
+    </id>
+    <property name="designation" column="job_desg" type="string"></property>
+    <property name="salary" column="job_salary" type="float"></property>
+   <many-to-one name="person" class="com.xmlmapping.Person" fetch="select">
+            <column name="person_id" not-null="true" />
+        </many-to-one>
+    </class>
+    
+    </hibernate-mapping>

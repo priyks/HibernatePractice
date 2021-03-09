@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    
+    <class name="com.xmlmapping.Person"  table="person">
+    <id name="id" >
+    <column name="person_id"></column>
+    <generator class="native"></generator>
+    </id>
+    <property name="name" column="person_name" type="string"></property>
+    <property name="age" column="person_age" type="int"></property>
+    <property name="city" column="person_city" type="string"></property>
+        <set name="jobs" table="job" 
+                inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="person_id" not-null="true" />
+            </key>
+            <one-to-many class="com.xmlmapping.Job" />
+        </set>
+    </class>
+    
+   
+    
+    </hibernate-mapping>
