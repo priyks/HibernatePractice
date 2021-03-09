@@ -48,6 +48,8 @@ public class DemoExam {
 		session.save(a2);
 		tx.commit();
 		
+		
+		
 		session.close();
 		
 
